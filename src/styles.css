@@ -1,0 +1,220 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--signal);
+  --color-primary-foreground: var(--signal-foreground);
+  --color-secondary: var(--surface);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--surface);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--signal-soft);
+  --color-accent-foreground: var(--foreground);
+  --color-destructive: var(--signal);
+  --color-destructive-foreground: var(--signal-foreground);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--signal);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-signal-soft: var(--signal-soft);
+  --color-surface: var(--surface);
+  --color-utility: var(--utility);
+  --color-utility-foreground: var(--utility-foreground);
+  --color-utility-muted: var(--utility-muted);
+  --color-utility-border: var(--utility-border);
+  --color-line-strong: var(--line-strong);
+  --font-display: "Cairo", sans-serif;
+  --font-body: "Cairo", sans-serif;
+  --font-mono: "Cairo", monospace;
+}
+
+:root {
+  --radius: 0.375rem;
+  --background: oklch(0.96 0.006 110);
+  --foreground: oklch(0.25 0.01 200);
+  --card: oklch(0.985 0.004 110);
+  --surface: oklch(0.985 0.004 110);
+  --muted-foreground: oklch(0.52 0.014 200);
+  --border: oklch(0.84 0.012 180);
+  --line-strong: oklch(0.75 0.013 180);
+  --signal: oklch(0.52 0.17 25);
+  --signal-foreground: oklch(0.98 0.004 110);
+  --signal-soft: oklch(0.92 0.035 25);
+  --utility: oklch(0.25 0.01 200);
+  --utility-foreground: oklch(0.96 0.006 110);
+  --utility-muted: oklch(0.76 0.008 180);
+  --utility-border: oklch(0.4 0.012 200);
+}
+
+.dark {
+  --background: oklch(0.2 0.01 200);
+  --foreground: oklch(0.94 0.006 110);
+  --card: oklch(0.24 0.01 200);
+  --surface: oklch(0.27 0.01 200);
+  --muted-foreground: oklch(0.7 0.01 180);
+  --border: oklch(0.36 0.012 200);
+  --line-strong: oklch(0.5 0.012 180);
+  --signal: oklch(0.64 0.17 25);
+  --signal-foreground: oklch(0.98 0.004 110);
+  --signal-soft: oklch(0.3 0.06 25);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+  }
+  button,
+  a,
+  input {
+    outline-color: var(--signal);
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+  }
+}
+
+@utility section-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--signal);
+  font-size: 0.75rem;
+  font-weight: 700;
+  & > span {
+    width: 2rem;
+    height: 2px;
+    background: var(--signal);
+  }
+}
+
+@utility signal-on-dark {
+  color: var(--signal-foreground);
+}
+
+.skip-link {
+  position: fixed;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: var(--radius);
+  background: var(--signal);
+  color: var(--signal-foreground);
+  padding: 0.75rem 1rem;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+.product-stage {
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 6px);
+  background: var(--card);
+  padding: 1.25rem;
+  box-shadow: 0 16px 44px color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+.signal-label,
+.neutral-label {
+  display: inline-flex;
+  min-height: 1.75rem;
+  align-items: center;
+  border-radius: var(--radius);
+  padding-inline: 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.signal-label {
+  background: var(--signal-soft);
+  color: var(--signal);
+}
+.neutral-label {
+  border: 1px solid var(--border);
+  color: var(--muted-foreground);
+}
+.category-index {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  background: var(--border);
+  gap: 1px;
+}
+.category-entry {
+  display: flex;
+  min-height: 7rem;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--background);
+  padding: 1.25rem;
+  transition: background-color 0.2s ease;
+}
+.category-entry:hover {
+  background: var(--signal-soft);
+}
+.product-card {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  background: var(--card);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+.product-card:hover {
+  border-color: var(--signal);
+  transform: translateY(-2px);
+}
+.product-card img {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+  background: var(--surface);
+}
+.empty-state {
+  border: 1px dashed var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .category-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

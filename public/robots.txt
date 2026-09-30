@@ -1,0 +1,24 @@
+User-agent: Googlebot
+Allow: /
+Disallow: /manage-x7k2
+
+User-agent: Bingbot
+Allow: /
+Disallow: /manage-x7k2
+
+User-agent: Twitterbot
+Allow: /
+Disallow: /manage-x7k2
+
+User-agent: facebookexternalhit
+Allow: /
+Disallow: /manage-x7k2
+
+# The admin console is not a public page. It is hidden for tidiness only —
+# real protection is the `is_admin()` Row Level Security policies in Supabase.
+User-agent: *
+Allow: /
+Disallow: /manage-x7k2
+
+# Note: this file is served from the site root. Search engines honour robots.txt
+# for the directory it lives in, so this covers every path on this host.
